@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import './PlaceOrder.css'
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { StoreContext } from "../../context/StoreContext";
 import axios from "axios";
@@ -19,6 +19,7 @@ const PlaceOrder = () => {
     city:"",
     state:"",
     zipcode:"",
+    country:"",
     phone:""
   })
 
@@ -52,9 +53,19 @@ const PlaceOrder = () => {
       window.location.replace(session_url);
     }
     else {
-      alert(response.data.message);
+      alert("Error");
     }
    }
+
+   const navigate = useNavigate();
+
+   useEffect(() => {
+      if(!token) {
+        navigate("/cart");
+      } else if(getTotalCartAmount() === 0) {
+        navigate('/cart');
+      }
+   },[token])
 
 
     return (
