@@ -14,8 +14,15 @@ const orderSchema = new mongoose.Schema({
         required:true
     },
     address: {
-        type:String,
-        required:true
+    firstName: String,
+    lastName: String,
+    email: String,
+    street: String,
+    city: String,
+    state: String,
+    zipcode: String,
+    country: String,
+    phone: String
     },
     status: {
         type:String, 
